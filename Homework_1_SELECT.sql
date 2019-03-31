@@ -172,3 +172,10 @@ SELECT trip_no, plane, town_from, town_to
 FROM trip
 WHERE plane != 'IL-86'
 ORDER BY plane;
+--26
+use [labor_sql];
+go
+SELECT trip_no, town_from, town_to
+FROM trip
+WHERE town_to != 'Rostov'
+ORDER BY plane;
