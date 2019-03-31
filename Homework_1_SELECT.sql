@@ -67,3 +67,108 @@ SELECT model, [type], price
 FROM printer
 WHERE price < 300
 ORDER BY price DESC;
+--11
+use [labor_sql];
+go
+SELECT model, ram, price
+FROM laptop
+WHERE ram = 64
+ORDER BY screen;
+--12
+use [labor_sql];
+go
+SELECT model, ram, price
+FROM pc
+WHERE ram > 64
+ORDER BY hd;
+--13
+use [labor_sql];
+go
+SELECT model, speed, price
+FROM pc
+WHERE speed BETWEEN 500 AND 750
+ORDER BY hd DESC;
+--14
+use [labor_sql];
+go
+SELECT *
+FROM outcome_o
+WHERE [out] > 2000
+ORDER BY [date] DESC;
+--15
+use [labor_sql];
+go
+SELECT *
+FROM income_o
+WHERE inc BETWEEN 5000 AND 10000
+ORDER BY inc;
+--16
+use [labor_sql];
+go
+SELECT *
+FROM income
+WHERE point = 1
+ORDER BY inc;
+--17
+use [labor_sql];
+go
+SELECT *
+FROM outcome
+WHERE point = 2
+ORDER BY [out];
+--18
+use [labor_sql];
+go
+SELECT *
+FROM classes
+WHERE country = 'Japan'
+ORDER BY [type] DESC;
+--19
+use [labor_sql];
+go
+SELECT name, launched
+FROM ships
+WHERE launched BETWEEN 1920 AND 1942
+ORDER BY launched DESC;
+--20
+use [labor_sql];
+go
+SELECT ship, battle, result
+FROM outcomes
+WHERE battle = 'Guadalcanal' AND result != 'sunk'
+ORDER BY ship DESC;
+--21
+use [labor_sql];
+go
+SELECT ship, battle, result
+FROM outcomes
+WHERE result = 'sunk'
+ORDER BY ship DESC;
+--22
+use [labor_sql];
+go
+SELECT class, displacement
+FROM classes
+WHERE displacement > 40000
+ORDER BY type;
+--23
+use [labor_sql];
+go
+SELECT trip_no, town_from, town_to
+FROM trip
+WHERE town_to = 'London'
+ORDER BY time_out;
+--24
+use [labor_sql];
+go
+SELECT trip_no, plane, town_from, town_to
+FROM trip
+WHERE plane = 'TU-134'
+ORDER BY time_out DESC;
+--25
+use [labor_sql];
+go
+SELECT trip_no, plane, town_from, town_to
+FROM trip
+WHERE plane != 'IL-86'
+ORDER BY plane;
