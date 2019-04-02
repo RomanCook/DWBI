@@ -179,3 +179,92 @@ SELECT trip_no, town_from, town_to
 FROM trip
 WHERE town_to != 'Rostov'
 ORDER BY plane;
+--27
+use [labor_sql];
+go
+SELECT *
+FROM pc
+WHERE model LIKE '%1%1%';
+--28
+use [labor_sql];
+go
+SELECT *
+FROM outcome
+WHERE DATEPART (mm, [date]) = 03;
+--29
+use [labor_sql];
+go
+SELECT *
+FROM outcome_o
+WHERE DATEPART (dd, [date]) = 14;
+--30
+use [labor_sql];
+go
+SELECT *
+FROM ships
+WHERE name LIKE 'W%n';
+--31
+use [labor_sql];
+go
+SELECT *
+FROM ships
+WHERE name LIKE '%e%e%';
+--32
+use [labor_sql];
+go
+SELECT name, launched
+FROM ships
+WHERE name NOT LIKE '%a';
+--33
+use [labor_sql];
+go
+SELECT name
+FROM battles
+WHERE name LIKE '% %' AND name NOT LIKE '%% %a';
+--34
+use [labor_sql];
+go
+SELECT *
+FROM trip
+WHERE DATEPART (HH, time_out) BETWEEN 12 AND 17;
+--35
+use [labor_sql];
+go
+SELECT *
+FROM trip
+WHERE DATEPART (HH, time_in) BETWEEN 17 AND 23;
+--36
+use [labor_sql];
+go
+SELECT *
+FROM trip
+WHERE DATEPART (HH, time_in) NOT BETWEEN 10 AND 21;
+--37
+use [labor_sql];
+go
+SELECT date
+FROM pass_in_trip
+WHERE place LIKE '1%';
+--38
+use [labor_sql];
+go
+SELECT date
+FROM pass_in_trip
+WHERE place LIKE '%c';
+--39
+use [labor_sql];
+go
+SELECT SUBSTRING (name, INSTR(name,' ')+1, 99) as name
+FROM passenger
+WHERE name LIKE '%% C%';
+--40
+use [labor_sql];
+go
+SELECT SUBSTRING (name, INSTR(name,' ')+1, 99) as name
+FROM passenger
+WHERE name NOT LIKE '%% J%';
+--41
+use [labor_sql];
+go
+SELECT 'середнє значення =' + AVG(price) as AVG_price
+FROM laptop;
