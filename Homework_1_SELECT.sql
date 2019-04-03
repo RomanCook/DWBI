@@ -279,3 +279,8 @@ SELECT
 'cd привід: ' + cast(cd as varchar(20)) as cd,
 'ціна: ' + cast(price as varchar(20)) as price
 FROM pc;
+--43
+use [labor_sql];
+go
+SELECT CONVERT (char(10),date, 102) as DATE
+FROM income;
