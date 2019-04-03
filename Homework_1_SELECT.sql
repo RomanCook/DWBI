@@ -254,17 +254,28 @@ WHERE place LIKE '%c';
 --39
 use [labor_sql];
 go
-SELECT SUBSTRING (name, INSTR(name,' ')+1, 99) as name
+SELECT SUBSTRING (name, charindex (name,' ') + 1, 99) as name
 FROM passenger
 WHERE name LIKE '%% C%';
 --40
 use [labor_sql];
 go
-SELECT SUBSTRING (name, INSTR(name,' ')+1, 99) as name
+SELECT SUBSTRING (name, charindex (name,' ') + 1, 99) as name
 FROM passenger
 WHERE name NOT LIKE '%% J%';
 --41
 use [labor_sql];
 go
-SELECT 'середнє значення =' + AVG(price) as AVG_price
+SELECT 'середнє значення =' + cast(AVG(price) as varchar(20)) as AVG_price
 FROM laptop;
+--42
+use [labor_sql];
+go
+SELECT
+'модель: ' + cast(model as varchar(20)) as model,
+'швидкість: ' + cast(speed as varchar(20)) as speed,
+'память: ' + cast(ram as varchar(20)) as ram,
+'діагональ: ' + cast(hd as varchar(20)) as hd,
+'cd привід: ' + cast(cd as varchar(20)) as cd,
+'ціна: ' + cast(price as varchar(20)) as price
+FROM pc;
