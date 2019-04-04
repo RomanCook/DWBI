@@ -284,3 +284,21 @@ use [labor_sql];
 go
 SELECT CONVERT (char(10),date, 102) as DATE
 FROM income;
+--44
+use [labor_sql];
+go
+SELECT ship, battle,
+    CASE
+        WHEN result = 'sunk' THEN 'потоплений'
+        WHEN result = 'damaged' THEN 'пошкоджений'
+        WHEN result = 'OK' THEN 'цілий'
+    END 
+    AS result
+FROM outcomes;
+--45
+use [labor_sql];
+go
+SELECT trip_no, date, 
+		'ряд: ' + SUBSTRING(place,1,1) AS ряд,
+		'місце: ' + SUBSTRING(place,2,1) AS місце
+FROM pass_in_trip;
