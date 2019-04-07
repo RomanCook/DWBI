@@ -302,3 +302,40 @@ SELECT trip_no, date,
 		'ряд: ' + SUBSTRING(place,1,1) AS ряд,
 		'місце: ' + SUBSTRING(place,2,1) AS місце
 FROM pass_in_trip;
+--46
+use [labor_sql];
+go
+SELECT trip_no, plane, 
+		'from ' + RTRIM(town_from) + ' to ' + town_to AS from_to,
+		--'from ' + CONCAT_WS(' to ',rtrim(town_from), town_to) AS from_to,
+		time_out, time_in
+FROM trip;
+--47
+use [labor_sql];
+go
+	SELECT	LEFT(trip_no,1) + RIGHT(trip_no,1) +
+			LEFT(plane,1) + RIGHT(TRIM(plane), 1) +
+			LEFT(town_from,1) + RIGHT(TRIM(town_from),1) +
+			LEFT(town_to,1) + RIGHT((town_to),1) +
+			LEFT(convert(nvarchar(30),time_out, 126),1) + RIGHT(convert(nvarchar(30),time_out,126),1) +
+			LEFT(convert(nvarchar(30),time_in, 126),1) + RIGHT(convert(nvarchar(30),time_in,126),1)
+	AS data
+FROM trip;
+--48
+use [labor_sql];
+go
+SELECT maker, COUNT(model) AS count_model
+FROM product
+WHERE type = 'PC'
+GROUP BY maker
+HAVING COUNT(DISTINCT model) > 1;
+--49
+use [labor_sql];
+go
+SELECT town, count(trip_no) as trip_no_count
+FROM (
+	SELECT trip_no, town_from town from trip
+	UNION ALL
+	SELECT trip_no, town_to town from trip
+	) AS t
+GROUP BY town
