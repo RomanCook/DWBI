@@ -338,4 +338,32 @@ FROM (
 	UNION ALL
 	SELECT trip_no, town_to town from trip
 	) AS t
-GROUP BY town
+GROUP BY town;
+--50
+use [labor_sql];
+go
+SELECT type, COUNT(model) AS count_model
+FROM printer
+GROUP BY type;
+--51
+use [labor_sql];
+go
+SELECT DISTINCT(cd), COUNT(model) AS count_model
+FROM pc
+GROUP BY cd;
+--52
+use [labor_sql];
+go
+SELECT trip_no, 
+	CASE  
+		WHEN DATEDIFF(hh,time_out,time_in) > 0 THEN DATEDIFF(hh,time_out,time_in)
+		WHEN DATEDIFF(hh,time_out,time_in) < 0 THEN DATEDIFF(hh,time_in,time_out)
+	END
+		AS durring
+FROM trip;
+--53
+use [labor_sql];
+go
+SELECT point, date, SUM(out) AS summ, MAX(out) AS max_sum, MIN(out) AS min_sum
+FROM outcome
+GROUP BY ROLLUP (date), point;
