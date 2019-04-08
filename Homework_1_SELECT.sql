@@ -367,3 +367,15 @@ go
 SELECT point, date, SUM(out) AS summ, MAX(out) AS max_sum, MIN(out) AS min_sum
 FROM outcome
 GROUP BY ROLLUP (date), point;
+--54
+use [labor_sql];
+go
+SELECT trip_no, left(trim(place),1) as line, count(right(trim(place),2)) as count_place
+FROM pass_in_trip
+GROUP BY trip_no, left(trim(place),1);
+--55
+use [labor_sql];
+go
+SELECT trip_no, left(trim(place),1) as line, count(right(trim(place),2)) as count_place
+FROM pass_in_trip
+GROUP BY trip_no, left(trim(place),1);
