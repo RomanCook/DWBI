@@ -376,6 +376,6 @@ GROUP BY trip_no, left(trim(place),1);
 --55
 use [labor_sql];
 go
-SELECT trip_no, left(trim(place),1) as line, count(right(trim(place),2)) as count_place
-FROM pass_in_trip
-GROUP BY trip_no, left(trim(place),1);
+SELECT count(name) as count_passenger
+FROM passenger
+WHERE reverse(SUBSTRING(reverse(rtrim(name)), 1, CHARINDEX(' ', reverse(rtrim(name))) - 1)) LIKE '[S,B,A]%';
