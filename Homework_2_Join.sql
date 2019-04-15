@@ -85,3 +85,40 @@ go
 SELECT name, country
 FROM ships
 JOIN classes ON ships.class = classes.class
+--join--14--
+use [labor_sql];
+go
+SELECT DISTINCT plane, name
+FROM trip
+JOIN company ON trip.id_comp = company.id_comp;
+--join--15--
+use [labor_sql];
+go
+SELECT name, date
+FROM passenger
+JOIN pass_in_trip ON passenger.id_psg = pass_in_trip.id_psg;
+--join--16--
+use [labor_sql];
+go
+SELECT pc.model as model, pc.speed as speed, pc.hd as hd
+FROM pc
+JOIN product ON pc.model = product.model 
+WHERE (pc.hd = 10 or pc.hd = 20) AND maker = 'A'
+UNION
+SELECT l.model as model, l.speed as speed, l.hd as hd
+FROM laptop l
+JOIN product ON l.model = product.model 
+WHERE (l.hd = 10 or l.hd = 20) AND maker = 'A'
+ORDER BY speed
+--join--17--
+use [labor_sql];
+go
+SELECT *
+FROM(SELECT maker, type FROM product) as p1
+PIVOT(count(type) FOR type IN (pc, laptop, printer)) as p2
+--join--18--
+use [labor_sql];
+go
+SELECT 'average price' as avg_, [11],[12],[14],[15]
+FROM(SELECT price, screen FROM laptop) as p1
+PIVOT(avg(price) FOR screen IN([11],[12],[14],[15])) as p2;
