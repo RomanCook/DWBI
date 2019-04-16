@@ -122,3 +122,27 @@ go
 SELECT 'average price' as avg_, [11],[12],[14],[15]
 FROM(SELECT price, screen FROM laptop) as p1
 PIVOT(avg(price) FOR screen IN([11],[12],[14],[15])) as p2;
+--join--19--
+use [labor_sql];
+go
+SELECT *
+FROM laptop l
+CROSS APPLY(
+SELECT p.maker FROM product p WHERE l.model = p.model) m
+--join--20--
+use [labor_sql];
+go
+SELECT *
+FROM laptop
+CROSS APPLY(
+SELECT MAX(price) as max_price
+FROM laptop l JOIN product p ON l.model = p.model
+GROUP BY maker) m
+SELECT *
+FROM laptop l1
+CROSS APPLY(
+SELECT TOP(1) * FROM laptop l2
+WHERE l1.model < l2.model OR 
+(l1.model = l2.model AND l1.code < l2.code)
+order by l2.model, l2.code) mm
+order by l1.model
