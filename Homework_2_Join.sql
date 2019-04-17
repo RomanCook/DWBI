@@ -138,6 +138,7 @@ CROSS APPLY(
 SELECT MAX(price) as max_price
 FROM laptop l JOIN product p ON l.model = p.model
 GROUP BY maker) m
+--join--21--
 SELECT *
 FROM laptop l1
 CROSS APPLY(
@@ -145,4 +146,23 @@ SELECT TOP(1) * FROM laptop l2
 WHERE l1.model < l2.model OR 
 (l1.model = l2.model AND l1.code < l2.code)
 order by l2.model, l2.code) mm
-order by l1.model
+order by l1.model, l1.code
+--join--22--
+use [labor_sql];
+go
+SELECT *
+FROM laptop l1
+OUTER APPLY(
+SELECT TOP(1) * FROM laptop l2
+WHERE l1.model < l2.model OR 
+(l1.model = l2.model AND l1.code < l2.code)
+order by l2.model, l2.code) mm
+order by l1.model, l1.code
+--join--23--
+use [labor_sql];
+go
+SELECT maker, model, p.type from ( 
+select distinct type from product
+) p
+cross apply (
+select top (3) * from product pr where pr.type=p.type) pp
