@@ -23,3 +23,10 @@ SELECT DISTINCT maker
 FROM product
 WHERE type = 'PC' AND maker NOT IN
 (SELECT DISTINCT maker FROM product WHERE type = 'laptop');
+--CTE--11--
+use [labor_sql];
+go
+SELECT DISTINCT maker
+FROM product
+WHERE type = 'PC' AND maker IN
+(SELECT DISTINCT maker FROM product WHERE type = 'laptop');
