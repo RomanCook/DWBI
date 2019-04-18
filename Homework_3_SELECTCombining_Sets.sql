@@ -16,3 +16,10 @@ UNION ALL
 SELECT num + 1 FROM num_CTE WHERE num < 10000)
 SELECT * FROM num_CTE
 OPTION (MAXRECURSION 10000);
+--CTE--08--
+use [labor_sql];
+go
+SELECT DISTINCT maker
+FROM product
+WHERE type = 'PC' AND maker NOT IN
+(SELECT maker FROM product WHERE type = 'laptop');
