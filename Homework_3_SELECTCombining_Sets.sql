@@ -15,7 +15,17 @@ AS
 UNION ALL
 SELECT num + 1 FROM num_CTE WHERE num < 10000)
 SELECT * FROM num_CTE
-OPTION (MAXRECURSION 10000);
+OPTION (MAXRECURSION 0);
+--CTE--06--
+use [labor_sql];
+go
+;WITH num_CTE(num)
+AS 
+(SELECT num = 1 
+UNION ALL
+SELECT num + 1 FROM num_CTE WHERE num < 100000)
+SELECT * FROM num_CTE
+OPTION (MAXRECURSION 0);
 --CTE--08--
 use [labor_sql];
 go
