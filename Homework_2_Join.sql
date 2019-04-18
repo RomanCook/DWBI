@@ -166,3 +166,13 @@ select distinct type from product
 ) p
 cross apply (
 select top (3) * from product pr where pr.type=p.type) pp
+--join--24--
+use [labor_sql];
+go
+SELECT code, name, value 
+FROM laptop
+CROSS APPLY (
+VALUES('hd', hd), ('ram', ram)
+,('screen', screen), ('speed', speed)
+)
+A (name, value);
