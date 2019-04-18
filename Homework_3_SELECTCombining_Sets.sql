@@ -22,4 +22,4 @@ go
 SELECT DISTINCT maker
 FROM product
 WHERE type = 'PC' AND maker NOT IN
-(SELECT maker FROM product WHERE type = 'laptop');
+(SELECT DISTINCT maker FROM product WHERE type = 'laptop');
