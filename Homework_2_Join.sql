@@ -172,7 +172,5 @@ go
 SELECT code, name, value 
 FROM laptop
 CROSS APPLY (
-VALUES('hd', hd), ('ram', ram)
-,('screen', screen), ('speed', speed)
-)
-A (name, value);
+VALUES('hd', hd), ('ram', ram), ('screen', screen), ('speed', speed)
+) as V (name, value);
